@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>error</title>
+</head>
+<body>
+    <script>
+
+        class validationError extends error {
+            constructor(message, field) {
+                super(message);
+                this.field = field;
+            }
+        }
+
+        class mathUtil {
+            
+            static sum(...numbers) {
+
+                if(numbers.length === 0) {
+                    throw new validationerror("total parameter harus lebih dari 0", "numbers");
+                }
+            
+                let total = 0;
+                for (const number of numbers) {
+                    total += number;
+                }
+                return total;
+            }
+        
+        }
+
+        try{
+            console.info(mathUtil.sum());
+            console.info("eko")
+        } catch (error) {
+            if(error instanceof validationerror) {
+                console.info(`terjadi error di field ${error.field} dengan error ${error.message}`);
+            } else {
+                console.info(`terjadi error: ${error.message}`);
+            }
+        } finally {
+            console.info("program spesial")
+        }
+
+        console.info("khannedy");
+        
+    </script>
+</body>
+</html>
